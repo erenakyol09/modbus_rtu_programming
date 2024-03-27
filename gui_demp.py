@@ -33,10 +33,14 @@ class HMI(QDialog):
 
         # Hata kontrolü ekleyelim
         try:
-            readRegisterValue = instrument.read_register(int(self.registerNumber.text()),0) # Registernumber, number of decimals            
-            self.value.setText(str(readRegisterValue))            
-            self.liveWindow.append(str(readRegisterValue))
-            self.faultMessage.setText("") 
+            try:
+                readRegisterValue = instrument.read_register(int(self.registerNumber.text()),0) # Registernumber, number of decimals            
+                self.value.setText(str(readRegisterValue))            
+                self.liveWindow.append(str(readRegisterValue))
+                self.faultMessage.setText("") 
+            except minimalmodbus.ModbusException as me:
+                self.faultMessage.setText(str(me))                     
+
         except ValueError:
             self.faultMessage.setText("Reading Address Not Enter!")     
 
@@ -51,9 +55,13 @@ class HMI(QDialog):
 
         # Hata kontrolü ekleyelim
         try:
-            instrument.write_register(int(self.registerNumber.text()), int(self.registerValue.text()), 0) # Registernumber, value, number of decimals for storage
-            self.liveWindow.append("Writed")
-            self.faultMessage.setText("") 
+            try:
+                instrument.write_register(int(self.registerNumber.text()), int(self.registerValue.text()), 0) # Registernumber, value, number of decimals for storage
+                self.liveWindow.append("Writed")
+                self.faultMessage.setText("") 
+            except minimalmodbus.ModbusException as me:
+                self.faultMessage.setText(str(me)) 
+
         except ValueError:
             self.faultMessage.setText("Writing Address or Value Not Enter!")           
         
@@ -81,6 +89,16 @@ class HMI(QDialog):
                 print(ascii_array)
                 print(type(ascii_array))
 
+                try:
+                    instrument.write_registers(int(self.registerMultiWriteStartNumber.text()), ascii_array)
+                    self.liveWindow.append("Writed")
+                    self.faultMessage.setText("") 
+                except minimalmodbus.ModbusException as me:
+                    if self.registerMultiWriteStartNumber.text() == "":
+                        self.faultMessage.setText("MultiWrite Address Not Entered!") 
+                    else:
+                        self.faultMessage.setText(str(me)) 
+
             else:
 
                 text = self.multiWriteLine.text()  
@@ -93,11 +111,17 @@ class HMI(QDialog):
                     instrument.write_registers(int(self.registerMultiWriteStartNumber.text()), integer_dizi)
                     self.liveWindow.append("Writed")
                     self.faultMessage.setText("") 
-                except ValueError:
-                    self.faultMessage.setText("MultiWrite Address Not Entered!") 
+                except minimalmodbus.ModbusException as me:
+                    if self.registerMultiWriteStartNumber.text() == "":
+                        self.faultMessage.setText("MultiWrite Address Not Entered!") 
+                    else:
+                        self.faultMessage.setText(str(me)) 
 
         except ValueError:
-            self.faultMessage.setText("MultiWrite Address Not Entered or Invalid Number!")  
+            if self.registerMultiWriteStartNumber.text() == "":
+                self.faultMessage.setText("MultiWrite Address Not Entered!") 
+            else:
+                self.faultMessage.setText("Invalid Number!") 
         
  
 app=QApplication(sys.argv)
