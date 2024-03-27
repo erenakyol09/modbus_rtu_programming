@@ -5,6 +5,7 @@ from PyQt5.uic import loadUi
 import RPi.GPIO as gpio
 import minimalmodbus
 import time 
+from port_scanner import find_device_port
 
 led=17
  
@@ -12,21 +13,51 @@ gpio.setmode(gpio.BCM)
 gpio.setwarnings(False)
 gpio.setup(led,gpio.OUT)
 
-instrument = minimalmodbus.Instrument('/dev/ttyACM0', 1) # port name, slave address (in decimal)
  
-class HMI(QDialog):   
-    
+class HMI(QDialog):  
+        
     def __init__(self):
         super(HMI, self).__init__()
         loadUi('design.ui',self)
-        
-        self.setWindowTitle('MODBUS RTU PROGRAMMING')        
-        self.btnRead.clicked.connect(self.modbusRead)
-        self.btnWrite.clicked.connect(self.modbusWrite)
-        self.btnMultiWrite.clicked.connect(self.modbusMultiWrite)
 
-        #radio buttons connection
-        self.radioButtonString.setChecked(True)
+        self.setWindowTitle('MODBUS RTU PROGRAMMING')       
+
+        self.faultMessage.setText("")
+        port = find_device_port(115200, 1)
+        port_str = str(port)
+        
+        if port_str == "None":
+            self.faultMessage.setText("Port Not Found!")
+            self.btnRefresh.clicked.connect(self.scanner)
+        else:
+            self.instrument = minimalmodbus.Instrument(port, 1) # port name, slave address (in decimal)  
+            self.faultMessage.setText(port_str)
+            self.btnRead.clicked.connect(self.modbusRead)
+            self.btnWrite.clicked.connect(self.modbusWrite)
+            self.btnMultiWrite.clicked.connect(self.modbusMultiWrite)
+            #radio buttons connection
+            self.radioButtonString.setChecked(True)
+            #self.btnRefresh.clicked.connect(self.scanner)
+    
+    @pyqtSlot()
+    def scanner(self):
+
+        self.faultMessage.setText("")
+        port = find_device_port(115200, 1)
+        port_str = str(port)
+
+        
+        if port_str == "None":
+            self.faultMessage.setText("Port Not Found!")
+        else:
+            self.instrument = minimalmodbus.Instrument(port, 1) # port name, slave address (in decimal)
+            self.faultMessage.setText(port_str)
+            self.btnRead.clicked.connect(self.modbusRead)
+            self.btnWrite.clicked.connect(self.modbusWrite)
+            self.btnMultiWrite.clicked.connect(self.modbusMultiWrite)
+            #radio buttons connection
+            self.radioButtonString.setChecked(True)
+                
 
     @pyqtSlot()
     def modbusRead(self):
@@ -34,7 +65,7 @@ class HMI(QDialog):
         # Hata kontrolü ekleyelim
         try:
             try:
-                readRegisterValue = instrument.read_register(int(self.registerNumber.text()),0) # Registernumber, number of decimals            
+                readRegisterValue = self.instrument.read_register(int(self.registerNumber.text()),0) # Registernumber, number of decimals            
                 self.value.setText(str(readRegisterValue))            
                 self.liveWindow.append(str(readRegisterValue))
                 self.faultMessage.setText("") 
@@ -56,7 +87,7 @@ class HMI(QDialog):
         # Hata kontrolü ekleyelim
         try:
             try:
-                instrument.write_register(int(self.registerNumber.text()), int(self.registerValue.text()), 0) # Registernumber, value, number of decimals for storage
+                self.instrument.write_register(int(self.registerNumber.text()), int(self.registerValue.text()), 0) # Registernumber, value, number of decimals for storage
                 self.liveWindow.append("Writed")
                 self.faultMessage.setText("") 
             except minimalmodbus.ModbusException as me:
@@ -90,7 +121,7 @@ class HMI(QDialog):
                 print(type(ascii_array))
 
                 try:
-                    instrument.write_registers(int(self.registerMultiWriteStartNumber.text()), ascii_array)
+                    self.instrument.write_registers(int(self.registerMultiWriteStartNumber.text()), ascii_array)
                     self.liveWindow.append("Writed")
                     self.faultMessage.setText("") 
                 except minimalmodbus.ModbusException as me:
@@ -108,7 +139,7 @@ class HMI(QDialog):
                 print(type(integer_dizi))
 
                 try:
-                    instrument.write_registers(int(self.registerMultiWriteStartNumber.text()), integer_dizi)
+                    self.instrument.write_registers(int(self.registerMultiWriteStartNumber.text()), integer_dizi)
                     self.liveWindow.append("Writed")
                     self.faultMessage.setText("") 
                 except minimalmodbus.ModbusException as me:
