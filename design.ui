@@ -546,16 +546,13 @@ QPushButton:pressed {
     <bool>false</bool>
    </property>
    <property name="styleSheet">
-    <string notr="true">QLabel {
- border: 1px solid gray;
- border-radius: 3px;
-}</string>
+    <string notr="true"/>
    </property>
    <property name="frameShape">
     <enum>QFrame::NoFrame</enum>
    </property>
    <property name="frameShadow">
-    <enum>QFrame::Sunken</enum>
+    <enum>QFrame::Plain</enum>
    </property>
    <property name="text">
     <string/>
@@ -571,10 +568,15 @@ QPushButton:pressed {
     </rect>
    </property>
    <property name="styleSheet">
-    <string notr="true">QTextBrowser{
- border: 5px solid gray;
- border-radius: 10px;
-}</string>
+    <string notr="true">QTextEdit {
+                border-radius: 10px;
+                background-clip: border;
+                background-color: rgb(255, 255,255);
+                color: rgb(113, 113, 113);
+                border:2px solid;
+				font:20pt bold;
+                border-color: solid gray;
+            }</string>
    </property>
   </widget>
   <widget class="QPushButton" name="btnWrite">
@@ -637,8 +639,13 @@ QPushButton:pressed {
    </property>
    <property name="styleSheet">
     <string notr="true">QLineEdit {
- border: 2px solid gray;
- border-radius: 10px;
+                border-radius: 10px;
+                background-clip: border;
+                background-color: rgb(255, 255,255);
+                color: rgb(113, 113, 113);
+                border:2px solid;
+				font:20pt bold;
+                border-color: solid gray;
 }</string>
    </property>
   </widget>
@@ -653,8 +660,13 @@ QPushButton:pressed {
    </property>
    <property name="styleSheet">
     <string notr="true">QLineEdit {
- border: 2px solid gray;
- border-radius: 10px;
+                border-radius: 10px;
+                background-clip: border;
+                background-color: rgb(255, 255,255);
+                color: rgb(113, 113, 113);
+                border:2px solid;
+				font:20pt bold;
+                border-color: solid gray;
 }</string>
    </property>
    <property name="frame">
@@ -714,12 +726,25 @@ QPushButton:pressed {
    </property>
    <property name="styleSheet">
     <string notr="true">QLineEdit {
- border: 2px solid gray;
- border-radius: 10px;
-}</string>
+                border-radius: 10px;
+                background-clip: border;
+                background-color: rgb(255, 255,255);
+                color: rgb(113, 113, 113);
+                border:2px solid;
+				font:20pt bold;
+                border-color: solid gray;
+}
+
+</string>
    </property>
    <property name="text">
-    <string/>
+    <string>Write Here</string>
+   </property>
+   <property name="frame">
+    <bool>false</bool>
+   </property>
+   <property name="echoMode">
+    <enum>QLineEdit::Normal</enum>
    </property>
    <property name="alignment">
     <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
@@ -785,8 +810,13 @@ QPushButton:pressed {
    </property>
    <property name="styleSheet">
     <string notr="true">QLineEdit {
- border: 2px solid gray;
- border-radius: 10px;
+                border-radius: 10px;
+                background-clip: border;
+                background-color: rgb(255, 255,255);
+                color: rgb(113, 113, 113);
+                border:2px solid;
+				font:20pt bold;
+                border-color: solid gray;
 }</string>
    </property>
   </widget>
@@ -1283,7 +1313,7 @@ QPushButton:pressed {
     <bool>false</bool>
    </property>
    <property name="frameShape">
-    <enum>QFrame::StyledPanel</enum>
+    <enum>QFrame::NoFrame</enum>
    </property>
    <property name="frameShadow">
     <enum>QFrame::Plain</enum>
@@ -1545,8 +1575,13 @@ QPushButton:pressed {
    </property>
    <property name="styleSheet">
     <string notr="true">QLineEdit {
- border: 2px solid gray;
- border-radius: 10px;
+                border-radius: 10px;
+                background-clip: border;
+                background-color: rgb(255, 255,255);
+                color: rgb(113, 113, 113);
+                border:2px solid;
+				font:20pt bold;
+                border-color: solid gray;
 }</string>
    </property>
   </widget>
@@ -1582,8 +1617,13 @@ QPushButton:pressed {
    </property>
    <property name="styleSheet">
     <string notr="true">QLineEdit {
- border: 2px solid gray;
- border-radius: 10px;
+                border-radius: 10px;
+                background-clip: border;
+                background-color: rgb(255, 255,255);
+                color: rgb(113, 113, 113);
+                border:2px solid;
+				font:20pt bold;
+                border-color: solid gray;
 }</string>
    </property>
   </widget>
@@ -1606,6 +1646,34 @@ QPushButton:pressed {
    </property>
    <property name="text">
     <string>Count:</string>
+   </property>
+  </widget>
+  <widget class="QTextBrowser" name="multiReadArea">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>460</y>
+     <width>481</width>
+     <height>192</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QTextEdit {
+                border-radius: 10px;
+                background-clip: border;
+                background-color: rgb(255, 255,255);
+                color: rgb(113, 113, 113);
+                border:2px solid;
+				font:20pt bold;
+                border-color: solid gray;
+            }</string>
+   </property>
+   <property name="html">
+    <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'13'; font-size:20pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'PibotoLt'; font-weight:600;&quot;&gt;Read Here&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
    </property>
   </widget>
  </widget>

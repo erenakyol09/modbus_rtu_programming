@@ -146,31 +146,44 @@ class HMI(QDialog):
     def modbusMultiRead(self):          
   
             self.faultMessage.setText("")
+            self.multiReadArea.clear()
 
             try:
                     start_register = int(self.registerMultiReadStartNumber.text())
                     num_registers = int(self.registerMultiReadCount.text())
+
+                    results = {}
+                    for reg_num in range(start_register, start_register + num_registers):
+                        try:
+                            # Her bir register veya bobini oku ve sözlüğe ekle
+                            result = self.instrument.read_register(reg_num, functioncode=3)  # Modbus RTU Read Holding Registers (03) komutu
+                            results[reg_num] = result
+                        except minimalmodbus.ModbusException as me:
+                            self.faultMessage.setText(str(me)) 
+
+                    #string selected
+                    if self.radioButtonMultiReadString.isChecked():                           
+                        # Map dictionary values to characters
+                        characters = [chr(results[i]) for i in sorted(results.keys())]
+                        # Concatenate characters to form a string
+                        result_string = ''.join(characters)
+                        self.multiReadArea.append(result_string)  
+                    else:
+                        # Extract values from the dictionary
+                        values = results.values()
+                        # Create a list from the values
+                        result_list = list(values)
+                        # Convert list elements to strings
+                        result_strings = [str(item) for item in result_list]
+                        # Join list elements with commas and spaces
+                        result_str = ', '.join(result_strings)
+                        self.multiReadArea.append(result_str)
+
             except Exception as e:
                     self.faultMessage.setText("MultiRead entry not integer!") 
 
-            results = {}
-            for reg_num in range(start_register, start_register + num_registers):
-                try:
-                    # Her bir register veya bobini oku ve sözlüğe ekle
-                    result = self.instrument.read_register(reg_num, functioncode=3)  # Modbus RTU Read Holding Registers (03) komutu
-                    results[reg_num] = result
-                except minimalmodbus.ModbusException as me:
-                    self.faultMessage.setText(str(me)) 
-
-            #string selected
-            if self.radioButtonMultiReadString.isChecked():   
-
-                ascii_array = [chr(num) for num in results]
-                print(ascii_array)
-
-            else:
-                print(results)        
- 
+            
+                 
 app=QApplication(sys.argv)
 widget=HMI()
 widget.show()
