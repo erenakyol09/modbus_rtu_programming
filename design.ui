@@ -475,7 +475,7 @@
    </property>
    <property name="font">
     <font>
-     <pointsize>24</pointsize>
+     <pointsize>20</pointsize>
      <weight>75</weight>
      <italic>true</italic>
      <bold>true</bold>
@@ -590,7 +590,7 @@ QPushButton:pressed {
    </property>
    <property name="font">
     <font>
-     <pointsize>24</pointsize>
+     <pointsize>20</pointsize>
      <weight>75</weight>
      <italic>true</italic>
      <bold>true</bold>
@@ -684,7 +684,7 @@ QPushButton:pressed {
     <rect>
      <x>180</x>
      <y>100</y>
-     <width>121</width>
+     <width>151</width>
      <height>21</height>
     </rect>
    </property>
@@ -705,7 +705,7 @@ QPushButton:pressed {
     <rect>
      <x>10</x>
      <y>100</y>
-     <width>121</width>
+     <width>151</width>
      <height>21</height>
     </rect>
    </property>
@@ -767,7 +767,7 @@ QPushButton:pressed {
    </property>
    <property name="font">
     <font>
-     <pointsize>24</pointsize>
+     <pointsize>20</pointsize>
      <weight>75</weight>
      <italic>true</italic>
      <bold>true</bold>
@@ -834,7 +834,7 @@ QPushButton:pressed {
     <rect>
      <x>510</x>
      <y>230</y>
-     <width>141</width>
+     <width>191</width>
      <height>16</height>
     </rect>
    </property>
@@ -1342,7 +1342,7 @@ QPushButton:pressed {
     <rect>
      <x>510</x>
      <y>310</y>
-     <width>151</width>
+     <width>201</width>
      <height>28</height>
     </rect>
    </property>
@@ -1366,7 +1366,7 @@ QPushButton:pressed {
     <rect>
      <x>510</x>
      <y>332</y>
-     <width>151</width>
+     <width>201</width>
      <height>28</height>
     </rect>
    </property>
@@ -1396,7 +1396,7 @@ QPushButton:pressed {
    </property>
    <property name="font">
     <font>
-     <pointsize>24</pointsize>
+     <pointsize>20</pointsize>
      <weight>75</weight>
      <italic>true</italic>
      <bold>true</bold>
@@ -1439,7 +1439,7 @@ QPushButton:pressed {
     <rect>
      <x>10</x>
      <y>210</y>
-     <width>121</width>
+     <width>471</width>
      <height>21</height>
     </rect>
    </property>
@@ -1460,7 +1460,7 @@ QPushButton:pressed {
     <rect>
      <x>510</x>
      <y>540</y>
-     <width>151</width>
+     <width>201</width>
      <height>28</height>
     </rect>
    </property>
@@ -1484,7 +1484,7 @@ QPushButton:pressed {
     <rect>
      <x>510</x>
      <y>560</y>
-     <width>151</width>
+     <width>201</width>
      <height>28</height>
     </rect>
    </property>
@@ -1514,7 +1514,7 @@ QPushButton:pressed {
    </property>
    <property name="font">
     <font>
-     <pointsize>24</pointsize>
+     <pointsize>20</pointsize>
      <weight>75</weight>
      <italic>true</italic>
      <bold>true</bold>
@@ -1557,7 +1557,7 @@ QPushButton:pressed {
     <rect>
      <x>10</x>
      <y>440</y>
-     <width>131</width>
+     <width>471</width>
      <height>21</height>
     </rect>
    </property>
@@ -1602,7 +1602,7 @@ QPushButton:pressed {
     <rect>
      <x>510</x>
      <y>460</y>
-     <width>81</width>
+     <width>101</width>
      <height>16</height>
     </rect>
    </property>
@@ -1647,7 +1647,7 @@ QPushButton:pressed {
     <rect>
      <x>610</x>
      <y>460</y>
-     <width>81</width>
+     <width>101</width>
      <height>16</height>
     </rect>
    </property>
@@ -1696,7 +1696,7 @@ p, li { white-space: pre-wrap; }
     <rect>
      <x>10</x>
      <y>0</y>
-     <width>171</width>
+     <width>251</width>
      <height>21</height>
     </rect>
    </property>
