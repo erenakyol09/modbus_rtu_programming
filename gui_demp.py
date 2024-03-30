@@ -1,9 +1,8 @@
 import sys
 from PyQt5.QtCore import pyqtSlot
-from PyQt5.QtWidgets import QApplication,QDialog
+from PyQt5.QtWidgets import QApplication,QDialog,QButtonGroup
 from PyQt5.uic import loadUi
 import minimalmodbus
-import time 
 from port_scanner import find_device_port
 
  
@@ -18,19 +17,39 @@ class HMI(QDialog):
         self.faultMessage.setText("")
         port = find_device_port(115200, 1)
         port_str = str(port)
+
+        # İlk QButtonGroup oluştur
+        self.radioButtonGroupMultiWrite = QButtonGroup()
+        self.radioButtonGroupMultiWrite.addButton(self.radioButtonString)
+        self.radioButtonGroupMultiWrite.addButton(self.radioButtonInteger)
+        
+        # İkinci QButtonGroup oluştur
+        self.radioButtonGroupMultiRead = QButtonGroup()
+        self.radioButtonGroupMultiRead.addButton(self.radioButtonMultiReadString)
+        self.radioButtonGroupMultiRead.addButton(self.radioButtonMultiReadInteger)
         
         if port_str == "None":
             self.faultMessage.setText("Port Not Found!")
             self.btnRefresh.clicked.connect(self.scanner)
         else:
+            self.connectionAllItem(port)
+
+
+    @pyqtSlot()
+    def connectionAllItem(self,port):
+            
+            port_str = str(port)
             self.instrument = minimalmodbus.Instrument(port, 1) # port name, slave address (in decimal)  
             self.faultMessage.setText(port_str)
             self.btnRead.clicked.connect(self.modbusRead)
             self.btnWrite.clicked.connect(self.modbusWrite)
             self.btnMultiWrite.clicked.connect(self.modbusMultiWrite)
+            self.btnMultiRead.clicked.connect(self.modbusMultiRead)
             #radio buttons connection
             self.radioButtonString.setChecked(True)
-            #self.btnRefresh.clicked.connect(self.scanner)
+            self.radioButtonMultiReadString.setChecked(True)
+
+            
     
     @pyqtSlot()
     def scanner(self):
@@ -43,13 +62,7 @@ class HMI(QDialog):
         if port_str == "None":
             self.faultMessage.setText("Port Not Found!")
         else:
-            self.instrument = minimalmodbus.Instrument(port, 1) # port name, slave address (in decimal)
-            self.faultMessage.setText(port_str)
-            self.btnRead.clicked.connect(self.modbusRead)
-            self.btnWrite.clicked.connect(self.modbusWrite)
-            self.btnMultiWrite.clicked.connect(self.modbusMultiWrite)
-            #radio buttons connection
-            self.radioButtonString.setChecked(True)
+            self.connectionAllItem(port)
                 
 
     @pyqtSlot()
@@ -128,7 +141,35 @@ class HMI(QDialog):
                 self.faultMessage.setText("MultiWrite Address Not Entered!") 
             else:
                 self.faultMessage.setText("Invalid Number!") 
-        
+
+    @pyqtSlot()
+    def modbusMultiRead(self):          
+  
+            self.faultMessage.setText("")
+
+            try:
+                    start_register = int(self.registerMultiReadStartNumber.text())
+                    num_registers = int(self.registerMultiReadCount.text())
+            except Exception as e:
+                    self.faultMessage.setText("MultiRead entry not integer!") 
+
+            results = {}
+            for reg_num in range(start_register, start_register + num_registers):
+                try:
+                    # Her bir register veya bobini oku ve sözlüğe ekle
+                    result = self.instrument.read_register(reg_num, functioncode=3)  # Modbus RTU Read Holding Registers (03) komutu
+                    results[reg_num] = result
+                except minimalmodbus.ModbusException as me:
+                    self.faultMessage.setText(str(me)) 
+
+            #string selected
+            if self.radioButtonMultiReadString.isChecked():   
+
+                ascii_array = [chr(num) for num in results]
+                print(ascii_array)
+
+            else:
+                print(results)        
  
 app=QApplication(sys.argv)
 widget=HMI()

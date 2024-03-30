@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>703</width>
-    <height>470</height>
+    <width>709</width>
+    <height>736</height>
    </rect>
   </property>
   <property name="palette">
@@ -468,7 +468,7 @@
    <property name="geometry">
     <rect>
      <x>360</x>
-     <y>10</y>
+     <y>50</y>
      <width>101</width>
      <height>61</height>
     </rect>
@@ -552,7 +552,7 @@ QPushButton:pressed {
 }</string>
    </property>
    <property name="frameShape">
-    <enum>QFrame::WinPanel</enum>
+    <enum>QFrame::NoFrame</enum>
    </property>
    <property name="frameShadow">
     <enum>QFrame::Sunken</enum>
@@ -565,8 +565,8 @@ QPushButton:pressed {
    <property name="geometry">
     <rect>
      <x>470</x>
-     <y>80</y>
-     <width>221</width>
+     <y>10</y>
+     <width>231</width>
      <height>171</height>
     </rect>
    </property>
@@ -581,7 +581,7 @@ QPushButton:pressed {
    <property name="geometry">
     <rect>
      <x>360</x>
-     <y>100</y>
+     <y>120</y>
      <width>101</width>
      <height>61</height>
     </rect>
@@ -630,7 +630,7 @@ QPushButton:pressed {
    <property name="geometry">
     <rect>
      <x>180</x>
-     <y>100</y>
+     <y>120</y>
      <width>151</width>
      <height>61</height>
     </rect>
@@ -646,7 +646,7 @@ QPushButton:pressed {
    <property name="geometry">
     <rect>
      <x>10</x>
-     <y>100</y>
+     <y>120</y>
      <width>151</width>
      <height>61</height>
     </rect>
@@ -665,7 +665,7 @@ QPushButton:pressed {
    <property name="geometry">
     <rect>
      <x>180</x>
-     <y>80</y>
+     <y>100</y>
      <width>121</width>
      <height>21</height>
     </rect>
@@ -686,7 +686,7 @@ QPushButton:pressed {
    <property name="geometry">
     <rect>
      <x>10</x>
-     <y>80</y>
+     <y>100</y>
      <width>121</width>
      <height>21</height>
     </rect>
@@ -707,9 +707,9 @@ QPushButton:pressed {
    <property name="geometry">
     <rect>
      <x>10</x>
-     <y>290</y>
-     <width>681</width>
-     <height>41</height>
+     <y>230</y>
+     <width>481</width>
+     <height>191</height>
     </rect>
    </property>
    <property name="styleSheet">
@@ -721,12 +721,15 @@ QPushButton:pressed {
    <property name="text">
     <string/>
    </property>
+   <property name="alignment">
+    <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
+   </property>
   </widget>
   <widget class="QPushButton" name="btnMultiWrite">
    <property name="geometry">
     <rect>
-     <x>270</x>
-     <y>190</y>
+     <x>510</x>
+     <y>360</y>
      <width>191</width>
      <height>61</height>
     </rect>
@@ -774,8 +777,8 @@ QPushButton:pressed {
   <widget class="QLineEdit" name="registerMultiWriteStartNumber">
    <property name="geometry">
     <rect>
-     <x>10</x>
-     <y>190</y>
+     <x>510</x>
+     <y>250</y>
      <width>151</width>
      <height>61</height>
     </rect>
@@ -790,8 +793,8 @@ QPushButton:pressed {
   <widget class="QLabel" name="label_4">
    <property name="geometry">
     <rect>
-     <x>10</x>
-     <y>170</y>
+     <x>510</x>
+     <y>230</y>
      <width>141</width>
      <height>16</height>
     </rect>
@@ -812,8 +815,8 @@ QPushButton:pressed {
    <property name="geometry">
     <rect>
      <x>10</x>
-     <y>430</y>
-     <width>681</width>
+     <y>690</y>
+     <width>481</width>
      <height>31</height>
     </rect>
    </property>
@@ -1280,7 +1283,7 @@ QPushButton:pressed {
     <bool>false</bool>
    </property>
    <property name="frameShape">
-    <enum>QFrame::NoFrame</enum>
+    <enum>QFrame::StyledPanel</enum>
    </property>
    <property name="frameShadow">
     <enum>QFrame::Plain</enum>
@@ -1298,8 +1301,8 @@ QPushButton:pressed {
   <widget class="QRadioButton" name="radioButtonString">
    <property name="geometry">
     <rect>
-     <x>180</x>
-     <y>190</y>
+     <x>510</x>
+     <y>310</y>
      <width>151</width>
      <height>28</height>
     </rect>
@@ -1313,14 +1316,17 @@ QPushButton:pressed {
     </font>
    </property>
    <property name="text">
-    <string>string</string>
+    <string>write string</string>
    </property>
+   <attribute name="buttonGroup">
+    <string notr="true">buttonGroup</string>
+   </attribute>
   </widget>
   <widget class="QRadioButton" name="radioButtonInteger">
    <property name="geometry">
     <rect>
-     <x>180</x>
-     <y>220</y>
+     <x>510</x>
+     <y>332</y>
      <width>151</width>
      <height>28</height>
     </rect>
@@ -1334,15 +1340,18 @@ QPushButton:pressed {
     </font>
    </property>
    <property name="text">
-    <string>integer</string>
+    <string>write integer</string>
    </property>
+   <attribute name="buttonGroup">
+    <string notr="true">buttonGroup</string>
+   </attribute>
   </widget>
   <widget class="QPushButton" name="btnRefresh">
    <property name="geometry">
     <rect>
-     <x>470</x>
-     <y>10</y>
-     <width>221</width>
+     <x>510</x>
+     <y>670</y>
+     <width>191</width>
      <height>61</height>
     </rect>
    </property>
@@ -1389,8 +1398,8 @@ QPushButton:pressed {
   <widget class="QLabel" name="label_5">
    <property name="geometry">
     <rect>
-     <x>310</x>
-     <y>270</y>
+     <x>10</x>
+     <y>210</y>
      <width>121</width>
      <height>21</height>
     </rect>
@@ -1404,10 +1413,206 @@ QPushButton:pressed {
     </font>
    </property>
    <property name="text">
-    <string>Multi Write Area</string>
+    <string>MultiWrite Area:</string>
+   </property>
+  </widget>
+  <widget class="QRadioButton" name="radioButtonMultiReadString">
+   <property name="geometry">
+    <rect>
+     <x>510</x>
+     <y>540</y>
+     <width>151</width>
+     <height>28</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>16</pointsize>
+     <weight>75</weight>
+     <italic>true</italic>
+     <bold>true</bold>
+    </font>
+   </property>
+   <property name="text">
+    <string>read string</string>
+   </property>
+   <attribute name="buttonGroup">
+    <string notr="true">buttonGroup_2</string>
+   </attribute>
+  </widget>
+  <widget class="QRadioButton" name="radioButtonMultiReadInteger">
+   <property name="geometry">
+    <rect>
+     <x>510</x>
+     <y>560</y>
+     <width>151</width>
+     <height>28</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>16</pointsize>
+     <weight>75</weight>
+     <italic>true</italic>
+     <bold>true</bold>
+    </font>
+   </property>
+   <property name="text">
+    <string>read integer</string>
+   </property>
+   <attribute name="buttonGroup">
+    <string notr="true">buttonGroup_2</string>
+   </attribute>
+  </widget>
+  <widget class="QPushButton" name="btnMultiRead">
+   <property name="geometry">
+    <rect>
+     <x>510</x>
+     <y>590</y>
+     <width>191</width>
+     <height>61</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>24</pointsize>
+     <weight>75</weight>
+     <italic>true</italic>
+     <bold>true</bold>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QPushButton {
+    color: #333;
+    border: 2px solid #555;
+    border-radius: 20px;
+    border-style: outset;
+    background: qradialgradient(
+        cx: 0.3, cy: -0.4, fx: 0.3, fy: -0.4,
+        radius: 1.35, stop: 0 #fff, stop: 1 #888
+        );
+    padding: 5px;
+    }
+
+QPushButton:hover {
+    background: qradialgradient(
+        cx: 0.3, cy: -0.4, fx: 0.3, fy: -0.4,
+        radius: 1.35, stop: 0 #fff, stop: 1 #bbb
+        );
+    }
+
+QPushButton:pressed {
+    border-style: inset;
+    background: qradialgradient(
+        cx: 0.4, cy: -0.1, fx: 0.4, fy: -0.1,
+        radius: 1.35, stop: 0 #fff, stop: 1 #ddd
+        );
+    }</string>
+   </property>
+   <property name="text">
+    <string>Multi Read</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_6">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>440</y>
+     <width>131</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>11</pointsize>
+     <weight>75</weight>
+     <italic>true</italic>
+     <bold>true</bold>
+    </font>
+   </property>
+   <property name="text">
+    <string>MultiRead Area:</string>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="registerMultiReadStartNumber">
+   <property name="geometry">
+    <rect>
+     <x>510</x>
+     <y>480</y>
+     <width>91</width>
+     <height>61</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QLineEdit {
+ border: 2px solid gray;
+ border-radius: 10px;
+}</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_7">
+   <property name="geometry">
+    <rect>
+     <x>510</x>
+     <y>460</y>
+     <width>81</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>11</pointsize>
+     <weight>75</weight>
+     <italic>true</italic>
+     <bold>true</bold>
+    </font>
+   </property>
+   <property name="text">
+    <string>Start Adr:</string>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="registerMultiReadCount">
+   <property name="geometry">
+    <rect>
+     <x>610</x>
+     <y>480</y>
+     <width>91</width>
+     <height>61</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QLineEdit {
+ border: 2px solid gray;
+ border-radius: 10px;
+}</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_8">
+   <property name="geometry">
+    <rect>
+     <x>610</x>
+     <y>460</y>
+     <width>81</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>11</pointsize>
+     <weight>75</weight>
+     <italic>true</italic>
+     <bold>true</bold>
+    </font>
+   </property>
+   <property name="text">
+    <string>Count:</string>
    </property>
   </widget>
  </widget>
  <resources/>
  <connections/>
+ <buttongroups>
+  <buttongroup name="buttonGroup"/>
+  <buttongroup name="buttonGroup_2"/>
+ </buttongroups>
 </ui>
