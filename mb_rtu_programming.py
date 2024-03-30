@@ -35,6 +35,9 @@ class HMI(QDialog):
         self.radioButtonGroupMultiRead = QButtonGroup()
         self.radioButtonGroupMultiRead.addButton(self.radioButtonMultiReadString)
         self.radioButtonGroupMultiRead.addButton(self.radioButtonMultiReadInteger)
+
+        self.radioButtonString.setChecked(True)
+        self.radioButtonMultiReadString.setChecked(True)
         
         if port_str == "None":
             self.faultMessage.setText("Port Not Found!")
@@ -53,11 +56,7 @@ class HMI(QDialog):
             self.btnWrite.clicked.connect(self.modbusWrite)
             self.btnMultiWrite.clicked.connect(self.modbusMultiWrite)
             self.btnMultiRead.clicked.connect(self.modbusMultiRead)
-            #radio buttons connection
-            self.radioButtonString.setChecked(True)
-            self.radioButtonMultiReadString.setChecked(True)
-
-            
+                        
     
     @pyqtSlot()
     def scanner(self):
