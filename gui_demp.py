@@ -5,14 +5,22 @@ from PyQt5.uic import loadUi
 import minimalmodbus
 from port_scanner import find_device_port
 
- 
+ # Copyright symbol using Alt code
+copyright_symbol_alt_code = "\u00A9"
+# Creator's name
+creator = "eren.akyol"
+# Version number
+version = "v1.0.0"
+# Full statement
+full_statement = f"{copyright_symbol_alt_code} {creator} {version}"
 class HMI(QDialog):  
         
     def __init__(self):
         super(HMI, self).__init__()
         loadUi('design.ui',self)
 
-        self.setWindowTitle('MODBUS RTU PROGRAMMING')       
+        self.setWindowTitle('MODBUS RTU PROGRAMMING')   
+        self.version.setText(str(full_statement))    
 
         self.faultMessage.setText("")
         port = find_device_port(115200, 1)
@@ -152,33 +160,36 @@ class HMI(QDialog):
                     start_register = int(self.registerMultiReadStartNumber.text())
                     num_registers = int(self.registerMultiReadCount.text())
 
-                    results = {}
-                    for reg_num in range(start_register, start_register + num_registers):
-                        try:
-                            # Her bir register veya bobini oku ve sözlüğe ekle
-                            result = self.instrument.read_register(reg_num, functioncode=3)  # Modbus RTU Read Holding Registers (03) komutu
-                            results[reg_num] = result
-                        except minimalmodbus.ModbusException as me:
-                            self.faultMessage.setText(str(me)) 
-
-                    #string selected
-                    if self.radioButtonMultiReadString.isChecked():                           
-                        # Map dictionary values to characters
-                        characters = [chr(results[i]) for i in sorted(results.keys())]
-                        # Concatenate characters to form a string
-                        result_string = ''.join(characters)
-                        self.multiReadArea.append(result_string)  
+                    if num_registers > 125:
+                        self.faultMessage.setText("Maximum count value must be 125!!!") 
                     else:
-                        # Extract values from the dictionary
-                        values = results.values()
-                        # Create a list from the values
-                        result_list = list(values)
-                        # Convert list elements to strings
-                        result_strings = [str(item) for item in result_list]
-                        # Join list elements with commas and spaces
-                        result_str = ', '.join(result_strings)
-                        self.multiReadArea.append(result_str)
+                        results = {}
+                        for reg_num in range(start_register, start_register + num_registers):
+                            try:
+                                # Her bir register veya bobini oku ve sözlüğe ekle
+                                result = self.instrument.read_register(reg_num, functioncode=3)  # Modbus RTU Read Holding Registers (03) komutu
+                                results[reg_num] = result
+                            except minimalmodbus.ModbusException as me:
+                                self.faultMessage.setText(str(me)) 
 
+                        #string selected
+                        if self.radioButtonMultiReadString.isChecked():                           
+                            # Map dictionary values to characters
+                            characters = [chr(results[i]) for i in sorted(results.keys())]
+                            # Concatenate characters to form a string
+                            result_string = ''.join(characters)
+                            self.multiReadArea.append(result_string)  
+                        else:
+                            # Extract values from the dictionary
+                            values = results.values()
+                            # Create a list from the values
+                            result_list = list(values)
+                            # Convert list elements to strings
+                            result_strings = [str(item) for item in result_list]
+                            # Join list elements with commas and spaces
+                            result_str = ', '.join(result_strings)
+                            self.multiReadArea.append(result_str)                                  
+                   
             except Exception as e:
                     self.faultMessage.setText("MultiRead entry not integer!") 
 

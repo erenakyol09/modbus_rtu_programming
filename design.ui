@@ -529,7 +529,7 @@ QPushButton:pressed {
    <property name="geometry">
     <rect>
      <x>10</x>
-     <y>10</y>
+     <y>30</y>
      <width>321</width>
      <height>61</height>
     </rect>
@@ -648,6 +648,9 @@ QPushButton:pressed {
                 border-color: solid gray;
 }</string>
    </property>
+   <property name="maxLength">
+    <number>5</number>
+   </property>
   </widget>
   <widget class="QLineEdit" name="registerNumber">
    <property name="geometry">
@@ -668,6 +671,9 @@ QPushButton:pressed {
 				font:20pt bold;
                 border-color: solid gray;
 }</string>
+   </property>
+   <property name="maxLength">
+    <number>5</number>
    </property>
    <property name="frame">
     <bool>true</bool>
@@ -818,6 +824,9 @@ QPushButton:pressed {
 				font:20pt bold;
                 border-color: solid gray;
 }</string>
+   </property>
+   <property name="maxLength">
+    <number>5</number>
    </property>
   </widget>
   <widget class="QLabel" name="label_4">
@@ -1584,6 +1593,9 @@ QPushButton:pressed {
                 border-color: solid gray;
 }</string>
    </property>
+   <property name="maxLength">
+    <number>5</number>
+   </property>
   </widget>
   <widget class="QLabel" name="label_7">
    <property name="geometry">
@@ -1625,6 +1637,9 @@ QPushButton:pressed {
 				font:20pt bold;
                 border-color: solid gray;
 }</string>
+   </property>
+   <property name="maxLength">
+    <number>3</number>
    </property>
   </widget>
   <widget class="QLabel" name="label_8">
@@ -1673,7 +1688,28 @@ QPushButton:pressed {
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'13'; font-size:20pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'PibotoLt'; font-weight:600;&quot;&gt;Read Here&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'PibotoLt';&quot;&gt;Read Here&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="version">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>0</y>
+     <width>171</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>11</pointsize>
+     <weight>75</weight>
+     <italic>true</italic>
+     <bold>true</bold>
+    </font>
+   </property>
+   <property name="text">
+    <string/>
    </property>
   </widget>
  </widget>
