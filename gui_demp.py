@@ -2,16 +2,9 @@ import sys
 from PyQt5.QtCore import pyqtSlot
 from PyQt5.QtWidgets import QApplication,QDialog
 from PyQt5.uic import loadUi
-import RPi.GPIO as gpio
 import minimalmodbus
 import time 
 from port_scanner import find_device_port
-
-led=17
- 
-gpio.setmode(gpio.BCM)
-gpio.setwarnings(False)
-gpio.setup(led,gpio.OUT)
 
  
 class HMI(QDialog):  
@@ -75,11 +68,6 @@ class HMI(QDialog):
         except ValueError:
             self.faultMessage.setText("Reading Address Not Enter!")     
 
-        
-        if gpio.input(led):
-            gpio.output(led,gpio.LOW)
-        else:
-            gpio.output(led, gpio.HIGH)
             
     @pyqtSlot()
     def modbusWrite(self): 
@@ -96,18 +84,9 @@ class HMI(QDialog):
         except ValueError:
             self.faultMessage.setText("Writing Address or Value Not Enter!")           
         
-
-        
-        if gpio.input(led):
-            gpio.output(led,gpio.LOW)
-        else:
-            gpio.output(led, gpio.HIGH)
     
     @pyqtSlot()
     def modbusMultiWrite(self):          
-
-        print(self.registerMultiWriteStartNumber.text())
-        print(self.multiWriteLine.text())
 
         # Hata kontrolü ekleyelim
         try:   
@@ -117,8 +96,6 @@ class HMI(QDialog):
             if self.radioButtonString.isChecked():               
                 
                 ascii_array = [ord(char) for char in self.multiWriteLine.text()]
-                print(ascii_array)
-                print(type(ascii_array))
 
                 try:
                     self.instrument.write_registers(int(self.registerMultiWriteStartNumber.text()), ascii_array)
@@ -135,8 +112,6 @@ class HMI(QDialog):
                 text = self.multiWriteLine.text()  
                 string_dizi = text.split(',')  
                 integer_dizi = [int(x) for x in string_dizi]
-                print(integer_dizi)
-                print(type(integer_dizi))
 
                 try:
                     self.instrument.write_registers(int(self.registerMultiWriteStartNumber.text()), integer_dizi)
